@@ -48,7 +48,7 @@ public class OrionInstance
 	public Boolean startOnCrash;
 	@SerializedName("state")
 	@Expose
-	public InstanceState state;
+	public OrionInstanceStates state;
 	@SerializedName("performance_tier")
 	@Expose
 	public PerformanceTier performanceTier;
@@ -130,7 +130,7 @@ public class OrionInstance
 		return this;
 	}
 
-	public OrionInstance withState(InstanceState state)
+	public OrionInstance withState(OrionInstanceStates state)
 	{
 		this.state = state;
 		return this;
@@ -187,8 +187,9 @@ public class OrionInstance
 	public void stop()
 	{
 		// Commented out until will are confident everything will run as expected.
-		// OrionApi.getInstance().stop(this);
-		logger.error("Instance stop called (but ignored) for " + this.name);
+		// logger.error("Instance stop called (but ignored) for " + this.name);
+		logger.error("Instance stop called for " + this.name);
+		OrionApi.getInstance().stop(this);
 	}
 	
 	public void start()

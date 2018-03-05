@@ -3,7 +3,7 @@ package au.com.noojee.orion.api.entities;
 import static au.com.noojee.orion.api.entities.InstanceStateType.FINAL;
 import static au.com.noojee.orion.api.entities.InstanceStateType.TRANSITIONAL;
 
-public enum InstanceState
+public enum OrionInstanceStates
 {
 	failed_to_provision(FINAL)
 	, initial(TRANSITIONAL)
@@ -24,7 +24,7 @@ public enum InstanceState
 	private InstanceStateType type;
 	
 	
-	InstanceState(InstanceStateType type)
+	OrionInstanceStates(InstanceStateType type)
 	{
 		this.type = type;
 	}

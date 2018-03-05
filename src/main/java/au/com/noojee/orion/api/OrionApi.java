@@ -22,7 +22,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.google.gson.reflect.TypeToken;
 
-import au.com.noojee.orion.api.entities.InstanceState;
+import au.com.noojee.orion.api.entities.OrionInstanceStates;
 import au.com.noojee.orion.api.entities.OrionInstance;
 import au.com.noojee.orion.api.entities.State;
 
@@ -127,7 +127,7 @@ public class OrionApi
 		return instance;
 	}
 
-	public InstanceState getState(String orionUUID)
+	public OrionInstanceStates getState(String orionUUID)
 	{
 		HTTPResponse response;
 		try
@@ -141,7 +141,7 @@ public class OrionApi
 
 		State state = GsonForOrion.fromJson(response.getResponseBody(), State.class);
 
-		return InstanceState.valueOf(state.getState());
+		return OrionInstanceStates.valueOf(state.getState());
 	}
 
 	public OrionInstance start(OrionInstance instance)
@@ -171,7 +171,7 @@ public class OrionApi
 		HTTPResponse response;
 		try
 		{
-			response = _request(HTTPMethod.POST, EndPoint.stop.getURL(instance), null);
+			response = request(HTTPMethod.POST, EndPoint.stop.getURL(instance), null);
 		}
 		catch (MalformedURLException e)
 		{
@@ -334,18 +334,11 @@ public class OrionApi
 		return response.parseBody(clazz);
 	}
 
-	private HTTPResponse request(HTTPMethod get, URL url, String jsonArgs)
+	private HTTPResponse request(HTTPMethod method, URL url, String jsonArgs)
 	{
 
 		HTTPResponse response;
-		try
-		{
-			response = _request(HTTPMethod.GET, EndPoint.instances.getURL(), jsonArgs);
-		}
-		catch (MalformedURLException e)
-		{
-			throw new OrionException(e);
-		}
+		response = _request(method, url, jsonArgs);
 
 		if (response.getResponseCode() >= 300)
 		{
