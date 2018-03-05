@@ -94,7 +94,7 @@ public class OrionApi
 		HTTPResponse response;
 		try
 		{
-			response = _request(HTTPMethod.GET, EndPoint.instances.getURL(), null);
+			response = request(HTTPMethod.GET, EndPoint.instances.getURL(), null);
 		}
 		catch (MalformedURLException e)
 		{
@@ -109,13 +109,13 @@ public class OrionApi
 		return instances;
 
 	}
-	
+
 	public OrionInstance getByUUID(String orionUUID)
 	{
 		HTTPResponse response;
 		try
 		{
-			response = _request(HTTPMethod.GET, EndPoint.instance.getByUUIDURL(orionUUID), null);
+			response = request(HTTPMethod.GET, EndPoint.instance.getByUUIDURL(orionUUID), null);
 		}
 		catch (MalformedURLException e)
 		{
@@ -126,13 +126,13 @@ public class OrionApi
 
 		return instance;
 	}
-	
+
 	public InstanceState getState(String orionUUID)
 	{
 		HTTPResponse response;
 		try
 		{
-			response = _request(HTTPMethod.GET, EndPoint.status.getByUUIDURL(orionUUID), null);
+			response = request(HTTPMethod.GET, EndPoint.status.getByUUIDURL(orionUUID), null);
 		}
 		catch (MalformedURLException e)
 		{
@@ -144,9 +144,6 @@ public class OrionApi
 		return InstanceState.valueOf(state.getState());
 	}
 
-
-
-
 	public OrionInstance start(OrionInstance instance)
 	{
 		OrionInstance responseInstance = null;
@@ -154,18 +151,14 @@ public class OrionApi
 		HTTPResponse response;
 		try
 		{
-			response = _request(HTTPMethod.POST, EndPoint.start.getURL(instance), null);
+			response = request(HTTPMethod.POST, EndPoint.start.getURL(instance), null);
 		}
 		catch (MalformedURLException e)
 		{
 			throw new OrionException(e);
 		}
-		if (response.getResponseCode() < 300)
-			responseInstance = GsonForOrion.fromJson(response.getResponseBody(), OrionInstance.class);
-		else
-		{
-			throw new OrionException(GsonForOrion.fromJson(response.getResponseBody(), OrionError.class));
-		}
+
+		responseInstance = GsonForOrion.fromJson(response.getResponseBody(), OrionInstance.class);
 
 		return responseInstance;
 
@@ -262,7 +255,7 @@ public class OrionApi
 		{
 			String json = buildJsonBody(HTTPMethod.GET, GsonForOrion.toJson(fieldList), filter.toJson());
 
-			response = _request(HTTPMethod.POST, endPoint.getURL(), json);
+			response = request(HTTPMethod.POST, endPoint.getURL(), json);
 		}
 		catch (MalformedURLException e)
 		{
@@ -297,7 +290,7 @@ public class OrionApi
 		try
 		{
 			pagedURL = new URL(url + "?_page=" + pageNo + "&_limit=" + PAGE_SIZE);
-			response = _request(HTTPMethod.POST, pagedURL, json);
+			response = request(HTTPMethod.POST, pagedURL, json);
 		}
 		catch (IOException e)
 		{
@@ -336,68 +329,38 @@ public class OrionApi
 
 		// String fieldValues = fieldNameValues.formatAsJson();
 
-		HTTPResponse response = _request(HTTPMethod.POST, completeUrl, jsonFieldValues);
+		HTTPResponse response = request(HTTPMethod.POST, completeUrl, jsonFieldValues);
 
 		return response.parseBody(clazz);
 	}
 
-//	/*
-//	 * Updates an existing entity . FieldValues is a map of name value pair that constitute the entity that we are
-//	 * pushing.
-//	 * @entityId - the Orion id of the entity to be updated.
-//	 */
-//	public <E> E update(EndPoint endPoint, int id,
-//			String jsonFieldValues, Class<E> clazz)
-//	{
-//		URL completeUrl;
-//		try
-//		{
-//			completeUrl = new URL(endPoint.getURL(id).toExternalForm());
-//		}
-//		catch (MalformedURLException e)
-//		{
-//			throw new OrionException(e);
-//		}
-//
-//		logger.error("Updating: url=" + completeUrl + " jsonFieldValues=" + jsonFieldValues);
-//		HTTPResponse response = _request(HTTPMethod.PUT, completeUrl, jsonFieldValues);
-//		if (response.getResponseCode() != 200)
-//			throw new OrionException("Update faieled for endPoint " + endPoint + " id=" + id);
-//
-//		return response.parseBody(clazz);
-//	}
-//
-//	public HTTPResponse delete(EndPoint endPoint, int id)
-//	{
-//		URL completeUrl = buildURL(endPoint, id);
-//		logger.error("Deleting: url=" + completeUrl);
-//		HTTPResponse response = _request(HTTPMethod.DELETE, completeUrl, null);
-//		if (response.getResponseCode() != 200)
-//			throw new OrionException("Delete faieled for endPoint " + endPoint + " id=" + id + " Reason:"
-//					+ response.getResponseMessage());
-//
-//		logger.error("Deleted: url=" + completeUrl);
-//
-//		return response;
-//	}
-//
-//	private URL buildURL(EndPoint endPoint, int id)
-//	{
-//		try
-//		{
-//			return new URL(endPoint.getURL(id).toExternalForm());
-//		}
-//		catch (MalformedURLException e)
-//		{
-//			// should never happen
-//			throw new OrionException(e);
-//		}
-//	}
+	private HTTPResponse request(HTTPMethod get, URL url, String jsonArgs)
+	{
+
+		HTTPResponse response;
+		try
+		{
+			response = _request(HTTPMethod.GET, EndPoint.instances.getURL(), jsonArgs);
+		}
+		catch (MalformedURLException e)
+		{
+			throw new OrionException(e);
+		}
+
+		if (response.getResponseCode() >= 300)
+		{
+			OrionError error = GsonForOrion.fromJson(response.getResponseBody(), OrionError.class);
+
+			throw new OrionException(error);
+		}
+
+		return response;
+	}
 
 	/**
 	 * Returns a raw response string.
 	 */
-	public HTTPResponse _request(HTTPMethod method, URL url, String jsonArgs)
+	private HTTPResponse _request(HTTPMethod method, URL url, String jsonArgs)
 	{
 		HTTPResponse response = null;
 
@@ -509,7 +472,7 @@ public class OrionApi
 	 * @param secret - use OrionSecret.load
 	 * @throws FileNotFoundException
 	 */
-	public static void init(Mode mode) 
+	public static void init(Mode mode)
 	{
 		OrionApiConfig config = OrionApiConfig.getInstance();
 
@@ -585,6 +548,5 @@ public class OrionApi
 
 		return out;
 	}
-
 
 }

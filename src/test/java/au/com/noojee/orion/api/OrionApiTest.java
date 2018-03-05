@@ -1,5 +1,7 @@
 package au.com.noojee.orion.api;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -14,8 +16,12 @@ public class OrionApiTest extends TestCase
 	Logger logger = LogManager.getLogger();
 
 	@Test
-	public void testGetVMList()
+	public void testGetVMList() throws FileNotFoundException
 	{
+		
+		OrionApiConfig.init(Mode.Test, getConfigDirectory());
+	
+
 		OrionApi.getInstance();
 		OrionApi.init(Mode.Test);
 
@@ -26,6 +32,19 @@ public class OrionApiTest extends TestCase
 			logger.error(instance);
 		}
 
+	
 	}
+	
+	/**
+	 * Returns the base path where config files are to be stored.
+	 * @param configFile
+	 * @return
+	 */
+	public File getConfigDirectory()
+	{
+		
+		return new File("src/test/resources/");
+	}
+
 
 }
