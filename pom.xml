@@ -54,6 +54,13 @@
 			<version>2.6</version>
 		</dependency>
 
+		<dependency>
+			<groupId>au.com.noojee.orion</groupId>
+			<artifactId>entities</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+
 
 
 		<dependency>

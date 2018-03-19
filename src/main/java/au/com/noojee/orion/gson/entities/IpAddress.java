@@ -1,21 +1,22 @@
 
-package au.com.noojee.orion.api.entities;
+package au.com.noojee.orion.gson.entities;
 
 import java.util.List;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class IpAddress
+public class IpAddress 
 {
 
 	@SerializedName("id")
 	@Expose
-	public String id;
+	private String id;
+
 	@SerializedName("name")
 	@Expose
 	public String name;
@@ -38,11 +39,11 @@ public class IpAddress
 	@Expose
 	public String updatedAt;
 
-	public IpAddress withId(String id)
-	{
-		this.id = id;
-		return this;
-	}
+//	public IpAddress withId(String id)
+//	{
+//		this.id = id;
+//		return this;
+//	}
 
 	public IpAddress withName(String name)
 	{

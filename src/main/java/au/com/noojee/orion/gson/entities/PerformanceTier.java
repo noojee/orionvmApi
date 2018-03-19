@@ -1,19 +1,20 @@
 
-package au.com.noojee.orion.api.entities;
+package au.com.noojee.orion.gson.entities;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class PerformanceTier
+public class PerformanceTier 
 {
-
 	@SerializedName("id")
 	@Expose
-	public String id;
+	private String id;
+
+
 	@SerializedName("name")
 	@Expose
 	public String name;
@@ -21,11 +22,11 @@ public class PerformanceTier
 	@Expose
 	public Region region;
 
-	public PerformanceTier withId(String id)
-	{
-		this.id = id;
-		return this;
-	}
+//	public PerformanceTier withId(String id)
+//	{
+//		this.id = id;
+//		return this;
+//	}
 
 	public PerformanceTier withName(String name)
 	{

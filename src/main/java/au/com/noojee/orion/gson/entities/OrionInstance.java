@@ -1,27 +1,27 @@
 
-package au.com.noojee.orion.api.entities;
+package au.com.noojee.orion.gson.entities;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import au.com.noojee.orion.api.OrionApi;
-
-public class OrionInstance
+public class OrionInstance 
 {
+	@SuppressWarnings("unused")
 	static transient private Logger logger = LogManager.getLogger();
-
 	@SerializedName("id")
 	@Expose
-	public String id;
+	private String id;
+
+
 	@SerializedName("name")
 	@Expose
 	public String name;
@@ -75,12 +75,18 @@ public class OrionInstance
 	public String updatedAt;
 
 	
-	
-	public OrionInstance withId(String id)
+
+	public String getId()
 	{
-		this.id = id;
-		return this;
+		return id;
 	}
+
+	
+//	public OrionInstance withId(String id)
+//	{
+//		this.id = id;
+//		return this;
+//	}
 
 	public OrionInstance withName(String name)
 	{
@@ -183,25 +189,12 @@ public class OrionInstance
 		this.updatedAt = updatedAt;
 		return this;
 	}
-	
-	public void stop()
-	{
-		// Commented out until will are confident everything will run as expected.
-		// logger.error("Instance stop called (but ignored) for " + this.name);
-		logger.error("Instance stop called for " + this.name);
-		OrionApi.getInstance().stop(this);
-	}
-	
-	public void start()
-	{
-		OrionApi.getInstance().start(this);
-	}
 
 
 	@Override
 	public String toString()
 	{
-		return new ToStringBuilder(this).append("id", id).append("name", name).append("memory", memory)
+		return new ToStringBuilder(this).append("id", getId()).append("name", name).append("memory", memory)
 				.append("virtualization", virtualization).append("hostname", hostname).append("bootDevice", bootDevice)
 				.append("startOnShutdown", startOnShutdown).append("startOnReboot", startOnReboot)
 				.append("startOnCrash", startOnCrash).append("state", state).append("performanceTier", performanceTier)
@@ -215,7 +208,7 @@ public class OrionInstance
 	{
 		return new HashCodeBuilder().append(region).append(bootDevice).append(networkAdapters).append(state)
 				.append(startOnReboot).append(startOnShutdown).append(virtualization).append(hostname)
-				.append(publicKeys).append(disks).append(performanceTier).append(memory).append(updatedAt).append(id)
+				.append(publicKeys).append(disks).append(performanceTier).append(memory).append(updatedAt).append(getId())
 				.append(availabilityGroup).append(createdAt).append(name).append(startOnCrash).toHashCode();
 	}
 
@@ -237,11 +230,8 @@ public class OrionInstance
 				.append(virtualization, rhs.virtualization).append(hostname, rhs.hostname)
 				.append(publicKeys, rhs.publicKeys).append(disks, rhs.disks)
 				.append(performanceTier, rhs.performanceTier).append(memory, rhs.memory)
-				.append(updatedAt, rhs.updatedAt).append(id, rhs.id).append(availabilityGroup, rhs.availabilityGroup)
+				.append(updatedAt, rhs.updatedAt).append(getId(), rhs.getId()).append(availabilityGroup, rhs.availabilityGroup)
 				.append(createdAt, rhs.createdAt).append(name, rhs.name).append(startOnCrash, rhs.startOnCrash)
 				.isEquals();
 	}
-
-	
-
 }

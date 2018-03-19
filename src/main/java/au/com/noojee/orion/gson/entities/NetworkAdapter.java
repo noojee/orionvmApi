@@ -1,21 +1,22 @@
 
-package au.com.noojee.orion.api.entities;
+package au.com.noojee.orion.gson.entities;
 
 import java.util.List;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class NetworkAdapter
+public class NetworkAdapter 
 {
 
 	@SerializedName("id")
 	@Expose
-	public String id;
+	private String id;
+
 	@SerializedName("index")
 	@Expose
 	public Long index;
@@ -35,12 +36,12 @@ public class NetworkAdapter
 	@Expose
 	public String updatedAt;
 
-	public NetworkAdapter withId(String id)
-	{
-		this.id = id;
-		return this;
-	}
-
+//	public NetworkAdapter withId(String id)
+//	{
+//		this.id = id;
+//		return this;
+//	}
+//
 	public NetworkAdapter withIndex(Long index)
 	{
 		this.index = index;

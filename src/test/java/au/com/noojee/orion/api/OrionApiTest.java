@@ -8,7 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 
-import au.com.noojee.orion.api.entities.OrionInstance;
+import au.com.noojee.orion.gson.entities.OrionInstance;
 import junit.framework.TestCase;
 
 public class OrionApiTest extends TestCase

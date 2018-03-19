@@ -57,7 +57,8 @@ public class OrionError
 	public String getMessage()
 	{
 		String message = this.errorDescription;
-		if (!details.getState().isEmpty())
+		
+		if (details != null && !details.getState().isEmpty())
 			message += ":" + details.getState().get(0);
 		return message;
 	}

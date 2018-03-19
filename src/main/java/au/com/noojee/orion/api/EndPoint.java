@@ -3,7 +3,7 @@ package au.com.noojee.orion.api;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import au.com.noojee.orion.api.entities.OrionInstance;
+import au.com.noojee.orion.gson.entities.OrionInstance;
 
 public enum EndPoint
 {
@@ -29,7 +29,7 @@ public enum EndPoint
 
 	public URL getURL(OrionInstance  instance) throws MalformedURLException
 	{
-		return new URL(OrionApi.getInstance().getBaseURL() + "instances/" + instance.id + "/" + this.endpoint);
+		return new URL(OrionApi.getInstance().getBaseURL() + "instances/" + instance.getId() + "/" + this.endpoint);
 		
 		
 	}

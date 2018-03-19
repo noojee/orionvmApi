@@ -22,9 +22,9 @@ import org.apache.logging.log4j.Logger;
 
 import com.google.gson.reflect.TypeToken;
 
-import au.com.noojee.orion.api.entities.OrionInstanceStates;
-import au.com.noojee.orion.api.entities.OrionInstance;
-import au.com.noojee.orion.api.entities.State;
+import au.com.noojee.orion.gson.entities.OrionInstance;
+import au.com.noojee.orion.gson.entities.OrionInstanceStates;
+import au.com.noojee.orion.gson.entities.State;
 
 public class OrionApi
 {
@@ -58,7 +58,7 @@ public class OrionApi
 	{
 		return baseURL;
 	}
-
+	
 	/**
 	 * Pulls every matching entity. Be careful! you could run out of memory and slam Orion! You can only use this method
 	 * of Orion returns a list of entities. This method will throw an exception if you try to make a call that causes

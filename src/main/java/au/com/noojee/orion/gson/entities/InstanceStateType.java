@@ -1,4 +1,4 @@
-package au.com.noojee.orion.api.entities;
+package au.com.noojee.orion.gson.entities;
 
 public enum InstanceStateType
 {
