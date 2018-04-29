@@ -41,13 +41,17 @@ public class OrionApiConfig
 
 	private static final String CONFIG_JSON = "orionapi_config.json";
 	
-	private static OrionApiConfig self;
+	private static OrionApiConfig self = new OrionApiConfig();
 
 
 	private String authToken;
 	private String apiUrl;
 
 
+	private OrionApiConfig()
+	{
+		
+	}
 	
 	public static OrionApiConfig getInstance()
 	{
@@ -64,7 +68,7 @@ public class OrionApiConfig
 
 		File file = getConfigPath(mode, configDir);
 		
-		logger.info("Reading OrionApiConfig from: " + file.getAbsolutePath());
+		logger.error("Reading OrionApiConfig from: " + file.getAbsolutePath());
 
 
 		FileReader fr = new FileReader(file);
@@ -77,6 +81,11 @@ public class OrionApiConfig
 		// check the URL for a trailing slash
 		if (!self.apiUrl.endsWith("/"))
 			self.apiUrl = self.apiUrl + "/";
+		
+		// If we can't read the config file we still need to make certain
+		// we have an instance so that the InstallView can create one.
+		if (self == null)
+			self = new OrionApiConfig();
 		
 	}
 	
