@@ -9,7 +9,7 @@ import com.google.gson.JsonSyntaxException;
 
 public class HTTPResponse
 {
-	private static Logger logger = LogManager.getLogger();
+	private Logger logger = LogManager.getLogger();
 	private int responseCode;
 	private String responseMessage;
 	private String responseBody;

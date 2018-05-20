@@ -16,7 +16,7 @@ import com.google.gson.annotations.SerializedName;
 public class OrionInstance 
 {
 	@SuppressWarnings("unused")
-	static transient private Logger logger = LogManager.getLogger();
+	transient private Logger logger = LogManager.getLogger();
 	@SerializedName("id")
 	@Expose
 	private String id;

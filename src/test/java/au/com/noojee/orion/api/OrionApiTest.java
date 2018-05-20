@@ -19,7 +19,7 @@ public class OrionApiTest extends TestCase
 	public void testGetVMList() throws FileNotFoundException
 	{
 		
-		OrionApiConfig.init(Mode.Test, getConfigDirectory());
+		OrionApiConfig.getInstance().init(Mode.Test, getConfigDirectory());
 	
 
 		OrionApi.getInstance();

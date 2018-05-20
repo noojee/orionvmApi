@@ -37,7 +37,7 @@ import com.google.gson.Gson;
 
 public class OrionApiConfig
 {
-	private static final Logger logger = LogManager.getLogger();
+	private transient final Logger logger = LogManager.getLogger();
 
 	private static final String CONFIG_JSON = "orionapi_config.json";
 	
@@ -50,6 +50,8 @@ public class OrionApiConfig
 
 	private OrionApiConfig()
 	{
+		// self is replaced when init is called.
+		self = this;
 		
 	}
 	
@@ -63,7 +65,7 @@ public class OrionApiConfig
 		return configPath.exists();
 	}
 	
-	public static void init(Mode mode, File configDir) throws FileNotFoundException 
+	public void init(Mode mode, File configDir) throws FileNotFoundException 
 	{
 
 		File file = getConfigPath(mode, configDir);

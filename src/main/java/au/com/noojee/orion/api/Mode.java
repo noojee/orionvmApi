@@ -6,20 +6,17 @@ import java.nio.file.FileSystems;
 
 public enum Mode
 {
-	Production,
-	Test;
+	Production("Auditor"),
+	Test("AuditorTest");
 	
+	@SuppressWarnings("unused")
+	private String dbName;
+	
+	Mode(String dbName)
+	{
+		this.dbName = dbName;
+	}
 
-//	public static boolean isConfigured(String configJson)
-//	{
-//		return getConfigFile(configJson).exists();
-//	}
-//
-//	public static String getConfigPath(String configFile)
-//	{
-//		return getConfigFile(configFile).getPath();
-//	}
-//
 	public File getConfigAbsolutePath(File configBaseDir, String configFilename)
 	{
 		return FileSystems.getDefault().getPath(configBaseDir.getAbsolutePath(), this.name(), configFilename).toFile();
