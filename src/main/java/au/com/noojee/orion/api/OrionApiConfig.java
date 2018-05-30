@@ -47,6 +47,8 @@ public class OrionApiConfig
 	private String authToken;
 	private String apiUrl;
 
+	private Boolean disableStopCommand;
+
 
 	private OrionApiConfig()
 	{
@@ -112,6 +114,18 @@ public class OrionApiConfig
 	public String getApiUrl() 
 	{
 		return apiUrl;
+	}
+	
+
+	public Boolean getDisableStopCommand()
+	{
+		return (disableStopCommand == null ? true : disableStopCommand);
+	}
+
+	
+	public void setDisableStopCommand(Boolean disableStopCommand)
+	{
+		this.disableStopCommand = disableStopCommand;
 	}
 
 	public void setApiUrl(String apiUrl) 

@@ -58,7 +58,7 @@ public class OrionApi
 	{
 		return baseURL;
 	}
-	
+
 	/**
 	 * Pulls every matching entity. Be careful! you could run out of memory and slam Orion! You can only use this method
 	 * of Orion returns a list of entities. This method will throw an exception if you try to make a call that causes
@@ -166,18 +166,30 @@ public class OrionApi
 
 	public OrionInstance stop(OrionInstance instance)
 	{
+		OrionInstance responseInstance;
+		
 		logger.error("STOP called on OrionInstance: " + instance.hostname);
 
-		HTTPResponse response;
-		try
+		if (OrionApiConfig.getInstance().getDisableStopCommand())
 		{
-			response = request(HTTPMethod.POST, EndPoint.stop.getURL(instance), null);
+			logger.error(
+					"Attempted to stop Instance " + instance.name + " but the Orion Stop command has been disabled");
+			responseInstance = instance;
 		}
-		catch (MalformedURLException e)
+		else
 		{
-			throw new OrionException(e);
+
+			HTTPResponse response;
+			try
+			{
+				response = request(HTTPMethod.POST, EndPoint.stop.getURL(instance), null);
+			}
+			catch (MalformedURLException e)
+			{
+				throw new OrionException(e);
+			}
+			responseInstance = GsonForOrion.fromJson(response.getResponseBody(), OrionInstance.class);
 		}
-		OrionInstance responseInstance = GsonForOrion.fromJson(response.getResponseBody(), OrionInstance.class);
 		return responseInstance;
 
 	}
