@@ -13,6 +13,8 @@ import javax.net.ssl.HttpsURLConnection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.google.gson.JsonSyntaxException;
+
 import au.com.noojee.agentbox.gson.entities.summary.AgentBoxContact;
 import au.com.noojee.agentbox.gson.entities.summary.AgentBoxContactResponse;
 
@@ -22,23 +24,22 @@ public class AgentBoxApi
 	private String baseURL;
 	private String clientID;
 	private String apiKey;
-	static final int PAGE_SIZE = 9;
+	static final int PAGE_SIZE = 200;
 
 	private enum HTTPMethod
 	{
 		GET, POST, PUT, DELETE
 	}
-	
+
 	public static interface AgentBoxApiConfig
 	{
 
 		String getAPIKey();
-		
+
 		String getAPIClientID();
-		
+
 		String getAPIURL();
 	}
-
 
 	public AgentBoxApi(AgentBoxApiConfig config)
 	{
@@ -54,7 +55,6 @@ public class AgentBoxApi
 	{
 		return baseURL;
 	}
-
 
 	AgentBoxPage<AgentBoxContact> getFirstPage() throws MalformedURLException
 	{
@@ -159,9 +159,17 @@ public class AgentBoxApi
 
 		if (response.getResponseCode() >= 300)
 		{
-			AgentBoxError error = AgentBoxGson.fromJson(response.getResponseBody(), AgentBoxError.class);
+			try
+			{
+				AgentBoxError error = AgentBoxGson.fromJson(response.getResponseBody(), AgentBoxError.class);
+				throw new AgentBoxException(error);
+			}
+			catch (JsonSyntaxException e)
+			{
+				// we can sometimes get html rather than json.
+				throw new AgentBoxException(response.getResponseBody());
+			}
 
-			throw new AgentBoxException(error);
 		}
 
 		return response;
