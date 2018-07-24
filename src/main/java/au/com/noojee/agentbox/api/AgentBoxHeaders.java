@@ -29,6 +29,7 @@ public class AgentBoxHeaders
 				"website",
 				"salutation",
 				"customSalutation",
+				"addressTo",
 				"companyName",
 				"email",
 				"mobile",
@@ -41,10 +42,11 @@ public class AgentBoxHeaders
 				"streetAddress.postcode",
 				"firstCreated",
 				"lastModified",
+				"links"
 		};
 	}
 	
-	public static List<ImportHeader> getHeaders() throws java.nio.charset.CharacterCodingException
+	public static List<ImportHeader> getHeaders()
 	{
 		List<ImportHeader> imports = new LinkedList<>();
 		
@@ -66,11 +68,11 @@ public class AgentBoxHeaders
 		strings.add(contact.getTitle());
 		strings.add(contact.getFirstName());
 		strings.add(contact.getLastName());
-		strings.add(contact.getJobTitle());
 		strings.add(contact.getWebsite());
 		strings.add(contact.getSalutation());
 		strings.add(contact.getCustomSalutation());
 		strings.add(contact.getCompanyName());
+		strings.add(contact.getJobTitle());
 		strings.add(contact.getEmail());
 		strings.add(contact.getMobile());
 		strings.add(contact.getHomePhone());
