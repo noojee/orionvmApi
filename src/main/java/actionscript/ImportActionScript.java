@@ -23,7 +23,7 @@ import au.com.noojee.agentbox.api.AgentBoxApi;
 import au.com.noojee.agentbox.api.AgentBoxApi.AgentBoxApiConfig;
 import au.com.noojee.agentbox.api.AgentBoxHeaders;
 import au.com.noojee.agentbox.api.AgentBoxIterator;
-import au.com.noojee.agentbox.gson.entities.AgentBoxContact;
+import au.com.noojee.agentbox.gson.entities.summary.AgentBoxContact;
 import au.com.vaadinutils.crud.CrudEntity;
 
 public class ImportActionScript extends ImportSourceAcitonScript implements ImportSource

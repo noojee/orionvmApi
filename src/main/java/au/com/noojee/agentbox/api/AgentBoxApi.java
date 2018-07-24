@@ -13,10 +13,8 @@ import javax.net.ssl.HttpsURLConnection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import au.com.noojee.agentbox.gson.entities.AgentBoxContact;
-import au.com.noojee.agentbox.gson.entities.AgentBoxContactResponse;
-import au.com.noojee.agentbox.gson.entities.summary.AgentBoxContactSummary;
-import au.com.noojee.agentbox.gson.entities.summary.AgentBoxContactSummaryResponse;
+import au.com.noojee.agentbox.gson.entities.summary.AgentBoxContact;
+import au.com.noojee.agentbox.gson.entities.summary.AgentBoxContactResponse;
 
 public class AgentBoxApi
 {
@@ -58,40 +56,16 @@ public class AgentBoxApi
 	}
 
 
-	public AgentBoxContact getContact(AgentBoxContactSummary summary)
+	AgentBoxPage<AgentBoxContact> getFirstPage() throws MalformedURLException
 	{
 
-		AgentBoxHTTPResponse response;
 		AgentBoxPage<AgentBoxContact> page = new AgentBoxPage<>(AgentBoxEndPoint.contacts);
-		URL pagedURL;
-		try
-		{
-			pagedURL = new URL(page.getURLWithArgs(this, summary.getId()));
-			response = request(HTTPMethod.GET, pagedURL);
-		}
-		catch (IOException e)
-		{
 
-			throw new AgentBoxException(e);
-		}
-
-		AgentBoxContactResponse contactResponse = AgentBoxGson.fromJson(response.getResponseBody(),
-				AgentBoxContactResponse.class);
-
-		return contactResponse.getResponse().getContact();
-
-	}
-
-	AgentBoxPage<AgentBoxContactSummary> getFirstPage() throws MalformedURLException
-	{
-
-		AgentBoxPage<AgentBoxContactSummary> page = new AgentBoxPage<>(AgentBoxEndPoint.contacts);
-
-		AgentBoxContactSummaryResponse responseList = get(page, AgentBoxContactSummaryResponse.class);
+		AgentBoxContactResponse responseList = get(page, AgentBoxContactResponse.class);
 
 		if (responseList != null)
 		{
-			List<AgentBoxContactSummary> entityList = responseList.getList();
+			List<AgentBoxContact> entityList = responseList.getList();
 
 			// If we get less than a page we must now have everything.
 			if (entityList.size() < AgentBoxApi.PAGE_SIZE)
@@ -104,17 +78,17 @@ public class AgentBoxApi
 
 	}
 
-	AgentBoxPage<AgentBoxContactSummary> getNextPage(AgentBoxPage<AgentBoxContactSummary> page)
+	AgentBoxPage<AgentBoxContact> getNextPage(AgentBoxPage<AgentBoxContact> page)
 			throws MalformedURLException
 	{
 		if (page.isLastPage())
 			throw new AgentBoxException("You have already seen the last page. Call Page.isLastPage()");
 
-		AgentBoxContactSummaryResponse responseList = get(page, AgentBoxContactSummaryResponse.class);
+		AgentBoxContactResponse responseList = get(page, AgentBoxContactResponse.class);
 
 		if (responseList != null)
 		{
-			List<AgentBoxContactSummary> entityList = responseList.getList();
+			List<AgentBoxContact> entityList = responseList.getList();
 
 			// If we get less than a page we must now have everything.
 			if (entityList.size() < AgentBoxApi.PAGE_SIZE)
@@ -139,7 +113,7 @@ public class AgentBoxApi
 	 * @return
 	 */
 
-	private <R> R get(AgentBoxPage<AgentBoxContactSummary> page, Class<R> clazz)
+	private <R> R get(AgentBoxPage<AgentBoxContact> page, Class<R> clazz)
 	{
 		AgentBoxHTTPResponse response = get(page);
 		return response.parseBody(clazz);
@@ -156,7 +130,7 @@ public class AgentBoxApi
 	 * @return
 	 */
 
-	private AgentBoxHTTPResponse get(AgentBoxPage<AgentBoxContactSummary> page)
+	private AgentBoxHTTPResponse get(AgentBoxPage<AgentBoxContact> page)
 	{
 
 		AgentBoxHTTPResponse response = null;

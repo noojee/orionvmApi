@@ -26,15 +26,6 @@ public class AgentBoxPage<E>
 			rows.add(entity);
 		}
 
-//		public Page(Page<?> page)
-//		{
-//			this.endPoint = page.endPoint;
-//			this.pageNo = page.pageNo;
-//			this.lastPage = page.lastPage;
-//			// this.filter = page.filter;
-//			rows = new LinkedList<>();
-//		}
-
 		public List<E> getList()
 		{
 			return rows;
@@ -74,11 +65,6 @@ public class AgentBoxPage<E>
 			rows.addAll(entityList);
 		}
 
-		// public AgentBoxFilter getFilter()
-		// {
-		// return this.filter;
-		// }
-
 		public int getPageNo()
 		{
 			return pageNo;
@@ -101,7 +87,7 @@ public class AgentBoxPage<E>
 
 			String urlArgs = "?"
 					+ ""
-					+ "version=2&page=" + page.pageNo + "&limit=" + AgentBoxApi.PAGE_SIZE;
+					+ "version=2&page=" + page.pageNo + "&limit=" + AgentBoxApi.PAGE_SIZE + "&include=streetAddress" ;
 
 			return urlArgs;
 		}

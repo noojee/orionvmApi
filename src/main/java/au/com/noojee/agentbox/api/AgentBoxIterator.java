@@ -2,12 +2,11 @@ package au.com.noojee.agentbox.api;
 
 import java.net.MalformedURLException;
 
-import au.com.noojee.agentbox.gson.entities.AgentBoxContact;
-import au.com.noojee.agentbox.gson.entities.summary.AgentBoxContactSummary;
+import au.com.noojee.agentbox.gson.entities.summary.AgentBoxContact;
 
 public class AgentBoxIterator
 {
-	private AgentBoxPage<AgentBoxContactSummary> currentPage = null;
+	private AgentBoxPage<AgentBoxContact> currentPage = null;
 
 	/**
 	 * The current page in the current row
@@ -45,9 +44,7 @@ public class AgentBoxIterator
 
 		if (currentRow < currentPage.getCount())
 		{
-			AgentBoxContactSummary summary = currentPage.getContact(currentRow);
-
-			AgentBoxContact next = api.getContact(summary);
+			AgentBoxContact next = currentPage.getContact(currentRow);
 			currentRow++;
 			return next;
 		}

@@ -7,8 +7,7 @@ import java.net.MalformedURLException;
 import org.junit.Before;
 import org.junit.Test;
 
-import au.com.noojee.agentbox.gson.entities.AgentBoxContact;
-import au.com.noojee.agentbox.gson.entities.summary.AgentBoxContactSummary;
+import au.com.noojee.agentbox.gson.entities.summary.AgentBoxContact;
 
 public class AgentBoxApiTest
 {
@@ -62,18 +61,16 @@ public class AgentBoxApiTest
 		{
 
 	
-			AgentBoxPage<AgentBoxContactSummary> page = api.getFirstPage();
+			AgentBoxPage<AgentBoxContact> page = api.getFirstPage();
 
 			int contactCount = 0;
 			boolean done = false;
 			while (!done)
 			{
-				for (AgentBoxContactSummary summary : page.getList())
+				for (AgentBoxContact contact : page.getList())
 				{
-					System.out.println(summary);
-					AgentBoxContact contact = api.getContact(summary);
-					contactCount++;
 					System.out.println(contact);
+					contactCount++;
 				}
 
 				if (!page.isLastPage())

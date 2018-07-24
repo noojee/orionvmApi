@@ -8,9 +8,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import au.com.noojee.agentbox.gson.entities.AgentBoxStreetAddress;
-
-public class AgentBoxContactSummary {
+public class AgentBoxContact {
 
     @SerializedName("id")
     @Expose
@@ -191,6 +189,14 @@ public class AgentBoxContactSummary {
         this.workPhone = workPhone;
     }
 
+    public AgentBoxStreetAddress getStreetAddress() {
+        return streetAddress;
+    }
+
+    public void setStreetAddress(AgentBoxStreetAddress streetAddress) {
+        this.streetAddress = streetAddress;
+    }
+
     public String getFirstCreated() {
         return firstCreated;
     }
@@ -217,7 +223,9 @@ public class AgentBoxContactSummary {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("id", id).append("type", type).append("status", status).append("title", title).append("firstName", firstName).append("lastName", lastName).append("jobTitle", jobTitle).append("website", website).append("salutation", salutation).append("customSalutation", customSalutation).append("companyName", companyName).append("email", email).append("mobile", mobile).append("homePhone", homePhone).append("workPhone", workPhone).append("firstCreated", firstCreated).append("lastModified", lastModified).append("links", links).toString();
+        return new ToStringBuilder(this).append("id", id).append("type", type).append("status", status).append("title", title).append("firstName", firstName).append("lastName", lastName).append("jobTitle", jobTitle).append("website", website).append("salutation", salutation).append("customSalutation", customSalutation).append("companyName", companyName).append("email", email).append("mobile", mobile).append("homePhone", homePhone).append("workPhone", workPhone).append("firstCreated", firstCreated)
+        		.append("streetAddress", streetAddress)
+        		.append("lastModified", lastModified).append("links", links).toString();
     }
 
     @Override
@@ -230,11 +238,12 @@ public class AgentBoxContactSummary {
         if (other == this) {
             return true;
         }
-        if ((other instanceof AgentBoxContactSummary) == false) {
+        if ((other instanceof AgentBoxContact) == false) {
             return false;
         }
-        AgentBoxContactSummary rhs = ((AgentBoxContactSummary) other);
+        AgentBoxContact rhs = ((AgentBoxContact) other);
         return new EqualsBuilder().append(lastName, rhs.lastName).append(lastModified, rhs.lastModified).append(website, rhs.website).append(status, rhs.status).append(customSalutation, rhs.customSalutation).append(links, rhs.links).append(companyName, rhs.companyName).append(type, rhs.type).append(homePhone, rhs.homePhone).append(id, rhs.id).append(title, rhs.title).append(email, rhs.email).append(firstCreated, rhs.firstCreated).append(workPhone, rhs.workPhone).append(salutation, rhs.salutation).append(firstName, rhs.firstName).append(mobile, rhs.mobile).append(jobTitle, rhs.jobTitle).isEquals();
     }
 
+	
 }

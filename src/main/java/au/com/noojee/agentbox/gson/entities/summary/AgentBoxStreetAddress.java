@@ -1,5 +1,5 @@
 
-package au.com.noojee.agentbox.gson.entities;
+package au.com.noojee.agentbox.gson.entities.summary;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -8,7 +8,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class AgentBoxPostalAddress {
+public class AgentBoxStreetAddress {
 
     @SerializedName("address")
     @Expose
@@ -81,10 +81,10 @@ public class AgentBoxPostalAddress {
         if (other == this) {
             return true;
         }
-        if ((other instanceof AgentBoxPostalAddress) == false) {
+        if ((other instanceof AgentBoxStreetAddress) == false) {
             return false;
         }
-        AgentBoxPostalAddress rhs = ((AgentBoxPostalAddress) other);
+        AgentBoxStreetAddress rhs = ((AgentBoxStreetAddress) other);
         return new EqualsBuilder().append(suburb, rhs.suburb).append(address, rhs.address).append(state, rhs.state).append(postcode, rhs.postcode).append(country, rhs.country).isEquals();
     }
 
