@@ -10,19 +10,19 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class AgentBoxContactResponse
+public class AgentBoxContactSummaryResponse
 {
 
 	@SerializedName("response")
 	@Expose
-	private AgentBoxContactWrapper response;
+	private AgentBoxContactSummaryWrapper response;
 
-	public AgentBoxContactWrapper getResponse()
+	public AgentBoxContactSummaryWrapper getResponse()
 	{
 		return response;
 	}
 
-	public void setResponse(AgentBoxContactWrapper response)
+	public void setResponse(AgentBoxContactSummaryWrapper response)
 	{
 		this.response = response;
 	}
@@ -46,15 +46,15 @@ public class AgentBoxContactResponse
 		{
 			return true;
 		}
-		if ((other instanceof AgentBoxContactResponse) == false)
+		if ((other instanceof AgentBoxContactSummaryResponse) == false)
 		{
 			return false;
 		}
-		AgentBoxContactResponse rhs = ((AgentBoxContactResponse) other);
+		AgentBoxContactSummaryResponse rhs = ((AgentBoxContactSummaryResponse) other);
 		return new EqualsBuilder().append(response, rhs.response).isEquals();
 	}
 
-	public List<AgentBoxContact> getList()
+	public List<AgentBoxContactSummary> getList()
 	{
 		return response.getList();
 	}

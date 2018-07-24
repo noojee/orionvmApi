@@ -10,7 +10,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class AgentBoxContactWrapper
+public class AgentBoxContactSummaryWrapper
 {
 
 	@SerializedName("items")
@@ -24,7 +24,7 @@ public class AgentBoxContactWrapper
 	private String last;
 	@SerializedName("contacts")
 	@Expose
-	private List<AgentBoxContact> contacts = null;
+	private List<AgentBoxContactSummary> contacts = null;
 
 	public String getItems()
 	{
@@ -56,17 +56,17 @@ public class AgentBoxContactWrapper
 		this.last = last;
 	}
 
-	public List<AgentBoxContact> getContacts()
+	public List<AgentBoxContactSummary> getContacts()
 	{
 		return contacts;
 	}
 
-	public void setContacts(List<AgentBoxContact> contacts)
+	public void setContacts(List<AgentBoxContactSummary> contacts)
 	{
 		this.contacts = contacts;
 	}
 
-	List<AgentBoxContact> getList()
+	List<AgentBoxContactSummary> getList()
 	{
 		return contacts;
 	}
@@ -91,11 +91,11 @@ public class AgentBoxContactWrapper
 		{
 			return true;
 		}
-		if ((other instanceof AgentBoxContactWrapper) == false)
+		if ((other instanceof AgentBoxContactSummaryWrapper) == false)
 		{
 			return false;
 		}
-		AgentBoxContactWrapper rhs = ((AgentBoxContactWrapper) other);
+		AgentBoxContactSummaryWrapper rhs = ((AgentBoxContactSummaryWrapper) other);
 		return new EqualsBuilder().append(last, rhs.last).append(items, rhs.items).append(current, rhs.current)
 				.append(contacts, rhs.contacts).isEquals();
 	}
