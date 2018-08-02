@@ -1,4 +1,4 @@
-package au.com.noojee.orion.api;
+package au.com.noojee.orion.api.internals;
 
 import java.io.IOException;
 

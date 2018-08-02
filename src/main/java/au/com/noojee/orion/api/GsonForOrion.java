@@ -19,6 +19,8 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
+import au.com.noojee.orion.api.internals.Conversions;
+
 
 public class GsonForOrion
 {

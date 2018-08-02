@@ -1,4 +1,4 @@
-package au.com.noojee.orion.api;
+package au.com.noojee.orion.api.internals;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -6,16 +6,15 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.Locale;
 
-import javax.money.CurrencyUnit;
-import javax.money.Monetary;
+import org.joda.money.CurrencyUnit;
+import org.joda.money.Money;
 
-import org.javamoney.moneta.Money;
+
 
 public interface Conversions
 {
-	static final CurrencyUnit currencyUnit = Monetary.getCurrency(Locale.getDefault());
+	static final CurrencyUnit currencyUnit = CurrencyUnit.AUD;
 
 	/**
 	 * Money
@@ -25,12 +24,12 @@ public interface Conversions
 	 */
 	public static Money asMoney(double value)
 	{
-		return Money.of(value, currencyUnit);
+		return Money.of(currencyUnit, value);
 	}
 
 	public static double asDouble(Money value)
 	{
-		return value.getNumber().doubleValue();
+		return value.getAmount().doubleValue();
 	}
 
 	/**
