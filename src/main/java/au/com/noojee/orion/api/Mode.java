@@ -17,12 +17,18 @@ public enum Mode
 		this.dbName = dbName;
 	}
 
+	/**
+	 * Generates a path based on the current Mode by inserting the Mode name between the 
+	 * configBaseDir and the configFilename.
+	 * 
+	 * @param configBaseDir
+	 * @param configFilename
+	 * @return
+	 */
 	public File getConfigAbsolutePath(File configBaseDir, String configFilename)
 	{
 		return FileSystems.getDefault().getPath(configBaseDir.getAbsolutePath(), this.name(), configFilename).toFile();
 	}
-	
-	
 	
 
 }
