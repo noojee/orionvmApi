@@ -67,10 +67,10 @@ public class OrionApiConfig
 		return configPath.exists();
 	}
 	
-	public void init(Mode mode, File configDir) throws FileNotFoundException 
+	public void init(File configDir) throws FileNotFoundException 
 	{
 
-		File file = getConfigPath(mode, configDir);
+		File file = getConfigPath(configDir);
 		
 		logger.error("Reading OrionApiConfig from: " + file.getAbsolutePath());
 
@@ -94,9 +94,9 @@ public class OrionApiConfig
 	}
 	
 
-	static File getConfigPath(Mode mode, File configDir)
+	static File getConfigPath(File configDir)
 	{
-		return mode.getConfigAbsolutePath(configDir, CONFIG_JSON);
+		return new File(configDir, CONFIG_JSON);
 	}
 
 	

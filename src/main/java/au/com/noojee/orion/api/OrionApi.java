@@ -477,7 +477,7 @@ public class OrionApi
 	 * @param secret - use OrionSecret.load
 	 * @throws FileNotFoundException
 	 */
-	public static void init(Mode mode)
+	public static void init()
 	{
 		OrionApiConfig config = OrionApiConfig.getInstance();
 
