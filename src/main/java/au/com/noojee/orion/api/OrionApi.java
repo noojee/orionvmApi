@@ -148,6 +148,9 @@ public class OrionApi
 	{
 		OrionInstance responseInstance = null;
 
+		Exception e1 = new Exception();
+		logger.error("Calling Start on {}", instance.name);
+
 		HTTPResponse response;
 		try
 		{
@@ -178,7 +181,9 @@ public class OrionApi
 		}
 		else
 		{
-
+			Exception e1 = new Exception();
+			logger.error("Calling Stop on {}", instance.name);
+			logger.error(e1, e1);
 			HTTPResponse response;
 			try
 			{
