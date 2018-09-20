@@ -149,7 +149,7 @@ public class OrionApi
 		OrionInstance responseInstance = null;
 
 		Exception e1 = new Exception();
-		logger.error("Calling Start on {}", instance.name);
+		logger.error("Calling START on OrionInstance {}", instance.name);
 
 		HTTPResponse response;
 		try
@@ -171,18 +171,17 @@ public class OrionApi
 	{
 		OrionInstance responseInstance;
 		
-		logger.error("STOP called on OrionInstance: " + instance.hostname);
 
 		if (OrionApiConfig.getInstance().getDisableStopCommand())
 		{
 			logger.error(
-					"Attempted to stop Instance " + instance.name + " but the Orion Stop command has been disabled");
+					"Attempted to stop Instance {} but the Orion Stop command has been disabled", instance.name);
 			responseInstance = instance;
 		}
 		else
 		{
 			Exception e1 = new Exception();
-			logger.error("Calling Stop on {}", instance.name);
+			logger.error("Calling STOP on OrionInstance: {}", instance.name);
 			logger.error(e1, e1);
 			HTTPResponse response;
 			try
