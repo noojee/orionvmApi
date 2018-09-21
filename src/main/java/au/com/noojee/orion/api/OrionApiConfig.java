@@ -117,7 +117,7 @@ public class OrionApiConfig
 	}
 	
 
-	public Boolean getDisableStopCommand()
+	public Boolean isDisableStopCommand()
 	{
 		return (disableStopCommand == null ? true : disableStopCommand);
 	}

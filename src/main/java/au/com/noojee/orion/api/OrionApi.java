@@ -172,16 +172,18 @@ public class OrionApi
 		OrionInstance responseInstance;
 		
 
-		if (OrionApiConfig.getInstance().getDisableStopCommand())
+		if (OrionApiConfig.getInstance().isDisableStopCommand())
 		{
+			Exception e1 = new Exception("Stack Trace");
 			logger.error(
-					"Attempted to stop Instance {} but the Orion Stop command has been disabled", instance.name);
+					"Attempted to stop Instance {} but the Orion Stop command has been disabled. Stacktrace follows.", instance.name);
+			logger.error(e1, e1);
 			responseInstance = instance;
 		}
 		else
 		{
-			Exception e1 = new Exception();
-			logger.error("Calling STOP on OrionInstance: {}", instance.name);
+			Exception e1 = new Exception("Stack Trace");
+			logger.error("Calling STOP on OrionInstance: {} Stack Trace follows", instance.name);
 			logger.error(e1, e1);
 			HTTPResponse response;
 			try
