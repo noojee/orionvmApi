@@ -148,7 +148,6 @@ public class OrionApi
 	{
 		OrionInstance responseInstance = null;
 
-		Exception e1 = new Exception();
 		logger.error("Calling START on OrionInstance {}", instance.name);
 
 		HTTPResponse response;

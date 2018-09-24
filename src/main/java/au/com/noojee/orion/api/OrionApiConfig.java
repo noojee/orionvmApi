@@ -41,7 +41,7 @@ public class OrionApiConfig
 
 	private static final String CONFIG_JSON = "orionapi_config.json";
 	
-	private static OrionApiConfig self = new OrionApiConfig();
+	private static volatile OrionApiConfig self = new OrionApiConfig();
 
 
 	private String authToken;
