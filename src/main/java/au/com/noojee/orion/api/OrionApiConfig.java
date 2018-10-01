@@ -68,7 +68,7 @@ public class OrionApiConfig
 		return configPath.exists();
 	}
 	
-	public static void init(File configDir) throws FileNotFoundException 
+	static void init(File configDir) throws FileNotFoundException 
 	{
 
 		File file = getConfigPath(configDir);
@@ -95,7 +95,7 @@ public class OrionApiConfig
 	}
 	
 
-	static File getConfigPath(File configDir)
+	static public File getConfigPath(File configDir)
 	{
 		return new File(configDir, CONFIG_JSON);
 	}

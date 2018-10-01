@@ -1,6 +1,7 @@
 package au.com.noojee.orion.api;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -482,8 +483,10 @@ public class OrionApi
 	 * @param secret - use OrionSecret.load
 	 * @throws FileNotFoundException
 	 */
-	public static void init()
+	public static void init(File configDirectory) throws FileNotFoundException
 	{
+		OrionApiConfig.init(configDirectory);
+
 		OrionApiConfig config = OrionApiConfig.getInstance();
 
 		self = new OrionApi();
