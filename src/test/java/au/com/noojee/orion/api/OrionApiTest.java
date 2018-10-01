@@ -43,7 +43,7 @@ public class OrionApiTest extends TestCase
 	public File getConfigDirectory()
 	{
 		
-		return new File("src/test/resources/");
+		return new File("src/test/resources/Test");
 	}
 
 

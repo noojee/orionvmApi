@@ -95,7 +95,7 @@ public class OrionApiConfig
 	}
 	
 
-	static File getConfigPath(File configDir)
+	static public File getConfigPath(File configDir)
 	{
 		return new File(configDir, CONFIG_JSON);
 	}
