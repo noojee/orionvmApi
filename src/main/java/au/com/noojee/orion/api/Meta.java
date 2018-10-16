@@ -1,9 +1,12 @@
 package au.com.noojee.orion.api;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 public class Meta
 {
-	
+	@SuppressFBWarnings
 	String status;
+	@SuppressFBWarnings
 	String more_info;
 	String message;
 	@Override

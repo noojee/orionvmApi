@@ -1,7 +1,10 @@
 package au.com.noojee.orion.api;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 public abstract class OrionResponseMeta<E>
 {
+	@SuppressFBWarnings
 	private Meta meta;
 	
 	public String getStatusMessage()
