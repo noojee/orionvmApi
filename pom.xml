@@ -19,16 +19,12 @@
 	</properties>
 
 	<distributionManagement>
-		<repository>
-			<id>noojee-internal</id>
-			<url>packagecloud+https://packagecloud.io/noojee/internal</url>
-		</repository>
-		<snapshotRepository>
-			<id>noojee-internal</id>
-			<url>packagecloud+https://packagecloud.io/noojee/internal</url>
-		</snapshotRepository>
+    	<snapshotRepository>
+        	<id>snapshots</id>
+        	<name>nit-snapshots</name>
+        	<url>https://nit.jfrog.io/nit/libs-snapshot-local</url>
+    	</snapshotRepository>
 	</distributionManagement>
-
 
 	<dependencies>
 
@@ -78,21 +74,7 @@
 			<artifactId>spotbugs</artifactId>
 			<version>3.1.7</version>
 		</dependency>
-		
-
-
 	</dependencies>
-
-	<build>
-		<extensions>
-			<extension>
-				<groupId>io.packagecloud.maven.wagon</groupId>
-				<artifactId>maven-packagecloud-wagon</artifactId>
-				<version>0.0.6</version>
-			</extension>
-		</extensions>
-
-	</build>
 
 
 </project>
