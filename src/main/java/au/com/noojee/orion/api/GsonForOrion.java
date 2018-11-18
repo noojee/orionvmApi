@@ -151,6 +151,7 @@ public class GsonForOrion
 	static private class LocalDateSerializer implements JsonSerializer<LocalDate>
 	{
 
+		@Override
 		public JsonElement serialize(LocalDate date, Type typeOfSrc, JsonSerializationContext context)
 		{
 			Long longDate = Conversions.toLong(date);
@@ -178,6 +179,7 @@ public class GsonForOrion
 	static private class LocalDateTimeSerializer implements JsonSerializer<LocalDateTime>
 	{
 
+		@Override
 		public JsonElement serialize(LocalDateTime date, Type typeOfSrc, JsonSerializationContext context)
 		{
 			Long longDate = Conversions.toLong(date);

@@ -9,6 +9,7 @@ public class OrionResponseList<E extends OrionEntity<E>> extends  OrionAbstractR
 	private List<E> response;
 	
 	
+	@Override
 	public List<E> getList()
 	{
 		// Guaranteed to return a list.
