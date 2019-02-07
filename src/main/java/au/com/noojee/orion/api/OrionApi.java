@@ -107,6 +107,9 @@ public class OrionApi
 		}.getType();
 		List<OrionInstance> instances = GsonForOrion.fromJson(response.getResponseBody(), listType);
 
+		if (instances == null)
+			instances = new ArrayList<>();
+
 		return instances;
 
 	}
@@ -170,13 +173,13 @@ public class OrionApi
 	public OrionInstance stop(OrionInstance instance)
 	{
 		OrionInstance responseInstance;
-		
 
 		if (OrionApiConfig.getInstance().isDisableStopCommand())
 		{
 			Exception e1 = new Exception("Stack Trace");
 			logger.error(
-					"Attempted to stop Instance {} but the Orion Stop command has been disabled. Stacktrace follows.", instance.name);
+					"Attempted to stop Instance {} but the Orion Stop command has been disabled. Stacktrace follows.",
+					instance.name);
 			logger.error(e1, e1);
 			responseInstance = instance;
 		}
@@ -378,11 +381,12 @@ public class OrionApi
 		// block all orion access.
 		if (OrionApiConfig.getInstance().isDisableOrion())
 		{
-			response = new HTTPResponse(400, "Orion Access from Auditor has been disabled by the SystemConfigView", "{\"error\":\"Access disabled\", \"error_description\":\"Access disabled from SystemConfigView\"}");
+			response = new HTTPResponse(400, "Orion Access from Auditor has been disabled by the SystemConfigView",
+					"{\"error\":\"Access disabled\", \"error_description\":\"Access disabled from SystemConfigView\"}");
 
 			return response;
 		}
-		
+
 		try
 		{
 
