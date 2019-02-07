@@ -49,6 +49,8 @@ public class OrionApiConfig
 
 	private Boolean disableStopCommand;
 
+	private Boolean disableOrion;
+
 
 	private OrionApiConfig()
 	{
@@ -128,6 +130,18 @@ public class OrionApiConfig
 	{
 		this.disableStopCommand = disableStopCommand;
 	}
+	
+	public Boolean isDisableOrion()
+	{
+		return (disableOrion == null ? true : disableOrion);
+	}
+	
+	public void setDisableOrion(Boolean disableOrion)
+	{
+		this.disableOrion = disableOrion;
+	}
+
+
 
 	public void setApiUrl(String apiUrl) 
 	{
@@ -139,6 +153,7 @@ public class OrionApiConfig
 		return CONFIG_JSON;
 	}
 
+	
 
 
 

@@ -375,6 +375,14 @@ public class OrionApi
 	{
 		HTTPResponse response = null;
 
+		// block all orion access.
+		if (OrionApiConfig.getInstance().isDisableOrion())
+		{
+			response = new HTTPResponse(400, "Orion Access from Auditor has been disabled by the SystemConfigView", "{\"error\":\"Access disabled\", \"error_description\":\"Access disabled from SystemConfigView\"}");
+
+			return response;
+		}
+		
 		try
 		{
 
