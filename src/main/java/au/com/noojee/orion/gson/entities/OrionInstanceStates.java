@@ -21,7 +21,8 @@ public enum OrionInstanceStates
 	, updating(TRANSITIONAL)
 	, updating_network(TRANSITIONAL)
 	, unknown(TRANSITIONAL) // I add this for internal tracking when we don't know what state the instance is in.
-	, deleted(FINAL);	// and another. Means we expect the system to no longer exist.
+	, deleted(FINAL)	// and another. Means we expect the system to no longer exist.
+	, other_dc(FINAL);  /// The instance not hosted in the orion dc.
 	
 	private InstanceStateType type;
 	
