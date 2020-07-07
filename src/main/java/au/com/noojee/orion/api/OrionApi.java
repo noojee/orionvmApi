@@ -174,31 +174,19 @@ public class OrionApi
 	{
 		OrionInstance responseInstance;
 
-		if (OrionApiConfig.getInstance().isDisableStopCommand())
+		Exception e1 = new Exception("Stack Trace");
+		logger.error("Calling STOP on OrionInstance: {} Stack Trace follows", instance.name);
+		logger.error(e1, e1);
+		HTTPResponse response;
+		try
 		{
-			Exception e1 = new Exception("Stack Trace");
-			logger.error(
-					"Attempted to stop Instance {} but the Orion Stop command has been disabled. Stacktrace follows.",
-					instance.name);
-			logger.error(e1, e1);
-			responseInstance = instance;
+			response = request(HTTPMethod.POST, EndPoint.stop.getURL(instance), null);
 		}
-		else
+		catch (MalformedURLException e)
 		{
-			Exception e1 = new Exception("Stack Trace");
-			logger.error("Calling STOP on OrionInstance: {} Stack Trace follows", instance.name);
-			logger.error(e1, e1);
-			HTTPResponse response;
-			try
-			{
-				response = request(HTTPMethod.POST, EndPoint.stop.getURL(instance), null);
-			}
-			catch (MalformedURLException e)
-			{
-				throw new OrionException(e);
-			}
-			responseInstance = GsonForOrion.fromJson(response.getResponseBody(), OrionInstance.class);
+			throw new OrionException(e);
 		}
+		responseInstance = GsonForOrion.fromJson(response.getResponseBody(), OrionInstance.class);
 		return responseInstance;
 
 	}

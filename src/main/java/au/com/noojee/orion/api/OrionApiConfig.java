@@ -47,8 +47,6 @@ public class OrionApiConfig
 	private String authToken;
 	private String apiUrl;
 
-	private Boolean disableStopCommand;
-
 	private Boolean disableOrion;
 
 
@@ -120,17 +118,6 @@ public class OrionApiConfig
 	}
 	
 
-	public Boolean isDisableStopCommand()
-	{
-		return (disableStopCommand == null ? true : disableStopCommand);
-	}
-
-	
-	public void setDisableStopCommand(Boolean disableStopCommand)
-	{
-		this.disableStopCommand = disableStopCommand;
-	}
-	
 	public Boolean isDisableOrion()
 	{
 		return (disableOrion == null ? true : disableOrion);
