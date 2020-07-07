@@ -16,7 +16,7 @@ import com.google.gson.annotations.SerializedName;
 public class OrionInstance 
 {
 	@SuppressWarnings("unused")
-	transient private Logger logger = LogManager.getLogger();
+	private    Logger logger = LogManager.getLogger();
 	@SerializedName("id")
 	@Expose
 	private String id;
@@ -81,12 +81,6 @@ public class OrionInstance
 		return id;
 	}
 
-	
-//	public OrionInstance withId(String id)
-//	{
-//		this.id = id;
-//		return this;
-//	}
 
 	public OrionInstance withName(String name)
 	{
@@ -219,7 +213,7 @@ public class OrionInstance
 		{
 			return true;
 		}
-		if ((other instanceof OrionInstance) == false)
+		if (!(other instanceof OrionInstance) )
 		{
 			return false;
 		}
