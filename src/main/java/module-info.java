@@ -8,6 +8,5 @@ module orion.api
 	requires org.apache.commons.lang3;
 	requires com.google.gson;
 	requires transitive org.joda.money;
-	requires junit;
 	requires org.apache.logging.log4j;
 }
