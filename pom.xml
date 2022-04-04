@@ -27,14 +27,14 @@
 			</plugin>
 		</plugins>
 	</build>
+	 <distributionManagement>
+			<repository>
+				<id>${distribution.id}</id>
+				<name>${distribution.name}</name>
+				<url>${distribution.url}</url>
+			</repository>
+		</distributionManagement>
 
-	<distributionManagement>
-		<snapshotRepository>
-			<id>snapshots</id>
-			<name>nit-snapshots</name>
-			<url>https://auditor.noojee.com.au/artifactory/nit-libs-snapshot-local</url>
-		</snapshotRepository>
-	</distributionManagement>
 
 	<dependencies>
 
@@ -79,7 +79,7 @@
 
 		<!-- overwrite dependency on spotbugs if you want to specify the version 
 			of spotbugs -->
-		<dependency>
+			<dependency>
 			<groupId>com.github.spotbugs</groupId>
 			<artifactId>spotbugs</artifactId>
 			<version>3.1.7</version>
